@@ -96,4 +96,4 @@ async def on_member_join_channel(member):
     print("aa")
 
 
-client.run('NzYyMTE1NDEwNTIyNDA2OTMz.X3kdSQ.5mSRu6C3OHdcy_00WDpnVmv9Tn8')
+client.run('token here')
