@@ -8,8 +8,6 @@ bot = commands.Bot(command_prefix='!')
 players = ["Kakan", "Rille", "Balle", "Chips"]
 currentPlayer = 0
 treman = random.randint(0, len(players))
-print(treman)
-
 
 def next_player():
     return (currentPlayer + 1) % len(players)
@@ -26,6 +24,9 @@ def last_player():
 # def update_treman(name):
 
 # def get_player(name:
+
+def get_treman():
+    return players[treman]
 
 @client.event
 async def on_ready():
@@ -69,26 +70,27 @@ async def on_message(message):
             await message.channel.send("TREMAN!!! " + str(players[treman]) + " dricker")
 
         await message.channel.send(str(a) + " och " + str(b) + m)
+        
+        if "!newtreman" in message.content.lower():
+
 
         if not (partone or parttwo):
             currentPlayer = next_player()
             await message.channel.send("Nu är det " + players[currentPlayer])
 
-    if "among us" in message.content.lower():
-        channel = client.get_channel(289451395373989918)
-        members = channel.members  # finds members connected to the channel
-        memids = []  # (list)
-        for member in members:
-            memids.append(member.name)
-        print(memids)  # print info
-        await message.channel.send("https://twitter.com/Majd1LoL/status/1307735771663790082")
 
     if "!update" in message.content.lower():
+        players = []
         channel = client.get_channel(289451395373989918)
         members = channel.members
         for member in members:
             players.append(member.name)
         print(players)
+        treman = len(players)-1
+
+
+    if "!treman" in message.content.lower():
+        await message.channel.send(str(get_treman()))
 
 
 @bot.command()
@@ -96,4 +98,4 @@ async def on_member_join_channel(member):
     print("aa")
 
 
-client.run('token here')
+client.run('NzYyMTE1NDEwNTIyNDA2OTMz.X3kdSQ.PJRu4bMpsePdFAz6mGo86rcXr-M')
