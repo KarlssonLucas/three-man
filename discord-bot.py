@@ -53,7 +53,7 @@ async def on_message(message):
         parttwo = False
 
         if a == b:
-            m = " - Dela ut " + str(a + b) + " klunkar"
+            m = " - Dela ut eller drick själv" + str(a + b) + " klunkar"
         elif a + b == 7:
             m = " - Seven ahead (" + str(players[next_player()]) + ")"
         elif a + b == 9:
@@ -70,10 +70,7 @@ async def on_message(message):
             await message.channel.send("TREMAN!!! " + str(players[treman]) + " dricker")
 
         await message.channel.send(str(a) + " och " + str(b) + m)
-        
-        if "!newtreman" in message.content.lower():
-
-
+         
         if not (partone or parttwo):
             currentPlayer = next_player()
             await message.channel.send("Nu är det " + players[currentPlayer])
@@ -89,13 +86,14 @@ async def on_message(message):
         treman = len(players)-1
 
 
-    if "!treman" in message.content.lower():
+    if "!whotreman" in message.content.lower():
         await message.channel.send(str(get_treman()))
 
+    if "@" in message.content.lower():
+        trem = "" 
+        for s in message.content:
+            if s != @:
 
-@bot.command()
-async def on_member_join_channel(member):
-    print("aa")
 
 client.run('token here')
 
