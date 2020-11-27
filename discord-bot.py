@@ -16,15 +16,6 @@ def next_player():
 def last_player():
     return (currentPlayer - 1) % len(players)
 
-
-# def add_player(name):
-
-# def remove_player(name):
-
-# def update_treman(name):
-
-# def get_player(name:
-
 def get_treman():
     return players[treman]
 
@@ -64,7 +55,7 @@ async def on_message(message):
             partone = False
 
         if ((a == 3) or (b == 3)) and (currentPlayer == treman):
-            await message.channel.send("Välj ny treman!!! (!treman [namn])")
+            await message.channel.send("Välj ny treman!!! (^namn)")
         elif (a == 3) or (b == 3) or (a + b == 3):
             parttwo = True
             await message.channel.send("TREMAN!!! " + str(players[treman]) + " dricker")
@@ -73,12 +64,12 @@ async def on_message(message):
          
         if not (partone or parttwo):
             currentPlayer = next_player()
-            await message.channel.send("Nu är det " + players[currentPlayer])
+            await message.channel.send("Nästa persons tur, " + players[currentPlayer] + " kör")
 
 
     if "!update" in message.content.lower():
         players = []
-        channel = client.get_channel(289451395373989918)
+        channel = client.get_channel('channelid')
         members = channel.members
         for member in members:
             players.append(member.name)
@@ -89,12 +80,15 @@ async def on_message(message):
     if "!whotreman" in message.content.lower():
         await message.channel.send(str(get_treman()))
 
-    if "@" in message.content.lower():
+    if "^" in message.content.lower():
         trem = "" 
         for s in message.content:
-            if s != @:
-
+            if s != ^:
+               trem += s
+        
+        for p in players:
+            if trem.lower() == p.lower()
+                treman = players.index(p)
+                
 
 client.run('token here')
-
-
